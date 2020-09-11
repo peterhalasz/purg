@@ -1,7 +1,7 @@
 {
-  "name": "github-public-repo-checker",
+  "name": "puregu",
   "version": "1.0.0",
-  "description": "A CLI app that checks a users or organizations public GitHub repositories",
+  "description": "A CLI app that checks a users or organizations public repositories",
   "main": "index.js",
   "engines": {
     "node": ">=8"
@@ -13,7 +13,7 @@
   ],
   "preferGlobal": true,
   "bin": {
-    "grpc": "bin/grpc"
+    "puregu": "bin/puregu"
   },
   "scripts": {
       "eslint": "eslint --fix"
