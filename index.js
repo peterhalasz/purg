@@ -1,3 +1,5 @@
+#!/usr/bin/nodejs
+
 const fetch = require('node-fetch');
 const yargs = require('yargs');
 
@@ -42,17 +44,11 @@ async function fetchRepositories(accountName, accountType) {
 
   if (response.status !== 200) {
     throw new Error(
-      `Error while fetching Github repos for ${accountType} ${accountName}`,
+      `Error while fetching Github repos for ${accountType} ${accountName}. ${response.status}, ${response.statusText}`,
     );
   }
 
-  const json = await response.json();
-
-  return json;
-}
-
-function filterPublicRepositories(repositories) {
-  return repositories.filter((repo) => repo.private === false);
+  return response.json();
 }
 
 function printPublicRepositories(publicRepositoryNames) {
@@ -67,7 +63,7 @@ function printPublicRepositories(publicRepositoryNames) {
 }
 
 function performChecks(publicRepositoryNames) {
-  if (argv.n !== undefined && publicRepositoryNames.length !== argv.n) {
+  if (argv.n && publicRepositoryNames.length !== argv.n) {
     throw new Error(
       `The expected number of public repositories (${argv.n}) does not match the actual number (${publicRepositoryNames.length})!`,
     );
@@ -112,15 +108,14 @@ function performChecks(publicRepositoryNames) {
 
     const repositories = await fetchRepositories(accountName, accountType);
 
-    const publicRepositoryNames = filterPublicRepositories(repositories).map(
-      (repo) => repo.name,
-    );
+    const publicRepositoryNames = repositories
+      .filter((repo) => repo.private === false)
+      .map((repo) => repo.name);
 
     printPublicRepositories(publicRepositoryNames);
 
     performChecks(publicRepositoryNames);
   } catch (e) {
-    console.log('\n');
     console.error(e.message);
     process.exit(1);
   }

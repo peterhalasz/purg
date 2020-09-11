@@ -1,7 +1,23 @@
 {
   "name": "github-public-repo-checker",
   "version": "1.0.0",
+  "description": "A CLI app that checks a users or organizations public GitHub repositories",
   "main": "index.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "github",
+    "public",
+    "repository"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "grpc": "bin/grpc"
+  },
+  "scripts": {
+      "eslint": "eslint --fix"
+  },
   "license": "MIT",
   "dependencies": {
     "node-fetch": "2.6.0",
