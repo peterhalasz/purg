@@ -3,14 +3,14 @@ module.exports = {
     browser: true,
     commonjs: true,
     es2021: true,
-    'jest/globals': true,
+    "jest/globals": true,
   },
-  extends: ['airbnb-base'],
+  extends: ["airbnb-base", "prettier"],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {
-    'no-console': 'off',
+    "no-console": "off",
   },
-  plugins: ['jest'],
+  plugins: ["jest"],
 };

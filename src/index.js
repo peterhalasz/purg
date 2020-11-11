@@ -1,14 +1,14 @@
 #!/usr/bin/nodejs
 
-const argv = require('./argv');
-const fetchRepositories = require('./fetch-repos');
-const { checkRepositoryNames } = require('./check-repos');
+const argv = require("./argv");
+const fetchRepositories = require("./fetch-repos");
+const { checkRepositoryNames } = require("./check-repos");
 
 function parseAccountType() {
   if (argv.o === true) {
-    return 'org';
+    return "org";
   }
-  return 'user';
+  return "user";
 }
 
 function printPublicRepositories(publicRepositoryNames) {
@@ -17,7 +17,7 @@ function printPublicRepositories(publicRepositoryNames) {
   }
 
   console.log(
-    `*** ${publicRepositoryNames.length} public repositories found for ${argv._}: ***`,
+    `*** ${publicRepositoryNames.length} public repositories found for ${argv._}: ***`
   );
   publicRepositoryNames.forEach((name) => console.log(name));
 }
@@ -36,7 +36,9 @@ async function app() {
     printPublicRepositories(publicRepositoryNames);
 
     if (argv.n && argv.n !== publicRepositoryNames.length) {
-      console.log(`Expected number of public repositories doesn't match. Expected: ${argv.n} actual: ${publicRepositoryNames.length}`);
+      console.log(
+        `Expected number of public repositories doesn't match. Expected: ${argv.n} actual: ${publicRepositoryNames.length}`
+      );
 
       process.exit(1);
     }
@@ -45,16 +47,19 @@ async function app() {
       const res = checkRepositoryNames(publicRepositoryNames, argv.e);
 
       if (res.unexpectedReposSet.length > 0) {
-        console.log('\n *** Unexpected public repositories ***');
+        console.log("\n *** Unexpected public repositories ***");
         res.unexpectedReposSet.forEach((r) => console.log(r));
       }
 
       if (res.expectedButNotFoundRepos.length > 0) {
-        console.log('\n *** Expected but not found repositories ***');
+        console.log("\n *** Expected but not found repositories ***");
         res.expectedButNotFoundRepos.forEach((r) => console.log(r));
       }
 
-      if (res.unexpectedReposSet.length > 0 || res.expectedButNotFoundRepos.length > 0) {
+      if (
+        res.unexpectedReposSet.length > 0 ||
+        res.expectedButNotFoundRepos.length > 0
+      ) {
         process.exit(1);
       }
 
