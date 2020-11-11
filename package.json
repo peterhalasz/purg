@@ -1,10 +1,9 @@
 {
-  "name": "puregu",
-  "version": "1.0.0",
+  "name": "purg",
+  "version": "0.0.1",
   "description": "A CLI app that checks a users or organizations public repositories",
-  "main": "index.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "keywords": [
     "github",
@@ -13,10 +12,11 @@
   ],
   "preferGlobal": true,
   "bin": {
-    "puregu": "bin/puregu"
+    "purg": "bin/purg"
   },
   "scripts": {
-      "eslint": "eslint --fix"
+    "eslint": "eslint --fix .",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
@@ -24,8 +24,11 @@
     "yargs": "15.4.1"
   },
   "devDependencies": {
-    "eslint": "7.8.1",
+    "eslint": "7.10.0",
     "eslint-config-airbnb-base": "14.2.0",
-    "eslint-plugin-import": "2.22.0"
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "24.0.2",
+    "jest": "26.4.2",
+    "jest-mock-console": "1.0.1"
   }
 }
