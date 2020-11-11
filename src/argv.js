@@ -5,8 +5,8 @@ const { argv } = yargs
   .example('$0 microsoft -o', 'Prints the public repos of Microsoft')
   .example('$0 peterhalasz', 'Prints the public repos of peterhalasz')
   .example(
-    '$0 peterhalasz -e',
-    'Prints the public repos of peterhalasz and fails if there are any that is public',
+    '$0 peterhalasz -e purg test',
+    'Prints the public repos of peterhalasz and fails if it does not match the list',
   )
   .boolean('o')
   .alias('o', 'org')
