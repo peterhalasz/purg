@@ -1,6 +1,6 @@
 {
   "name": "purg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A CLI app that checks a users or organizations public repositories",
   "engines": {
     "node": ">=12"
